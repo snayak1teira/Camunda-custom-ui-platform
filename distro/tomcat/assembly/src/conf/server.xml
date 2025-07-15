@@ -54,7 +54,7 @@
           testOnBorrow="true"
           validationQuery="SELECT 1"
     -->
-    <Resource name="jdbc/ProcessEngine"
+    <!--<Resource name="jdbc/ProcessEngine"
               auth="Container"
               type="javax.sql.DataSource" 
               factory="org.apache.tomcat.jdbc.pool.DataSourceFactory"
@@ -66,7 +66,21 @@
               password="sa"
               maxActive="20"
               minIdle="5"
-              maxIdle="20" />
+              maxIdle="20" />-->
+              
+          <Resource name="jdbc/ProcessEngine"
+          auth="Container"
+          type="javax.sql.DataSource"
+          factory="org.apache.tomcat.jdbc.pool.DataSourceFactory"
+          uniqueResourceName="process-engine"
+          driverClassName="org.postgresql.Driver"
+          url="jdbc:postgresql://localhost:5432/camunda_db"
+          defaultTransactionIsolation="READ_COMMITTED"
+          username="postgres"
+          password="root"
+          maxActive="20"
+          minIdle="5"
+          maxIdle="20" />  
 
     <Resource name="global/camunda-bpm-platform/process-engine/ProcessEngineService!org.camunda.bpm.ProcessEngineService" auth="Container"
               type="org.camunda.bpm.ProcessEngineService"
@@ -101,7 +115,7 @@
          APR (HTTP/AJP) Connector: /docs/apr.html
          Define a non-SSL HTTP/1.1 Connector on port 8080
     -->
-    <Connector port="8080" protocol="HTTP/1.1"
+    <Connector port="8090" protocol="HTTP/1.1"
                connectionTimeout="20000"
                redirectPort="8443" />
     <!-- A "Connector" using the shared thread pool-->
