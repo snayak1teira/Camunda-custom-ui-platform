@@ -109,7 +109,7 @@
     "AUTH_LOGOUT_SUCCESSFUL": "Logout successful",
     "AUTH_LOGOUT_THANKS": "Thank you for using TechTiera today. Have a great {{dayContext}}!",
     "BACK": "Back",
-    "BANNER_CE_EOL_TEXT": "This is a Normal page for testing. Happy Coding! <a href=\"\">!</a>.",
+    "BANNER_CE_EOL_TEXT": "This is a Normal page for testing.<a href=\"\">!</a>.",
     "BATCHES_BREAD_BATCHES": "Batches",
     "BATCHES_DELETE_BATCH_FAILED": "Could not delete batch: {{message}}",
     "BATCHES_DELETE_BATCH_STATUS": "Finished",

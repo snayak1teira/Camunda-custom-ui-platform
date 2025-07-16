@@ -40,8 +40,8 @@ Contents:
         After starting the server, you can access the 
         following web applications:
 
-        http://localhost:8080/camunda
-        http://localhost:8080/engine-rest
+        http://localhost:8090/camunda
+        http://localhost:8090/engine-rest
 
   sql/
         This directory contains the create and upgrade sql script
