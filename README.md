@@ -1,5 +1,4 @@
-                                            # Camunda-custom-ui-platform
-# Camunda 7 Manual Build Guide
+# Camunda Custom UI Platform
 
 This guide provides step-by-step instructions to build Camunda 7 from source, including the engine, REST API, and web applications.
 
@@ -25,14 +24,7 @@ The official Camunda 7 source is available at: https://github.com/camunda/camund
 
 ## Build Process
 
-### Step 1: Clone the Repository
-
-```bash
-git clone https://github.com/camunda/camunda-bpm-platform.git
-cd camunda-bpm-platform
-```
-
-### Step 2: Build All Modules
+### Step 1: Build All Modules
 
 Build the entire project to ensure all dependencies are available:
 
@@ -42,7 +34,7 @@ mvn clean install -DskipTests
 
 > **Note**: This step is crucial as it installs all required artifacts into the local Maven repository.
 
-### Step 3: Build Tomcat Distribution
+### Step 2: Build Tomcat Distribution
 
 Navigate to the Tomcat distribution directory and build:
 
@@ -72,6 +64,9 @@ Deploy the generated WAR file (`target/camunda-webapp-tomcat-*.war`) to your exi
 2. Configure the server (if needed):
    - Edit `server/apache-tomcat-*/conf/server.xml` to change ports
    - Add database drivers to `server/apache-tomcat-*/lib/` for PostgreSQL or MySQL
+   - **OR**
+   - Modify the changes in `camunda-tomcat` → `camunda-tomcat-assembly-pom.xml` add the PostgreSQL or MySQL dependency with include it in the `assembly.xml` file.
+   - Example: `<include>org.postgresql:postgresql:jar</include>`
 
 3. Start the server:
    ```bash
@@ -88,9 +83,9 @@ Once deployed, access the following URLs:
 
 | Service | URL | Description |
 |---------|-----|-------------|
-| **Cockpit** | http://localhost:8080/camunda/ | Process monitoring and management |
-| **Tasklist** | http://localhost:8080/camunda/ | Task management interface |
-| **Admin** | http://localhost:8080/camunda/ | User and system administration |
+| **Cockpit**  | http://localhost:8090/camunda/app/cockpit/ | Process monitoring and management |
+| **Tasklist** | http://localhost:8090/camunda/app/tasklist/ | Task management interface |
+| **Admin**    | http://localhost:8090/camunda/app/admin/ | User and system administration |
 | **REST API** | http://localhost:8080/engine-rest/ | RESTful API endpoint |
 
 ## Default Credentials
@@ -103,6 +98,10 @@ Password: demo
 ## Database Configuration
 
 ### For PostgreSQL or MySQL:
+
+1. Edit `server/apache-tomcat-*/conf/server.xml` to change DB Configuration
+
+**OR**: Manually we can change:
 
 1. Download the appropriate JDBC driver JAR
 2. Place it in the `server/apache-tomcat-*/lib/` directory
@@ -146,10 +145,6 @@ You can customize the build by modifying:
 2. **Missing dependencies**: The `webapps/` module depends on `engine` and `engine-rest` - don't build it in isolation
 3. **Database connection**: Verify JDBC drivers are in the correct `lib/` directory
 
-## Additional Resources
-
-- [ChatGPT Build Suggestions](https://chatgpt.com/s/t_686b8f2449b48191a48895df3c386a5c)
-- [Alternative Build Approach](https://chatgpt.com/s/t_686b8f8b1d6881918a9a38315ea8945c)
 
 ## Summary
 
@@ -157,6 +152,30 @@ You can customize the build by modifying:
 2. **Build all modules** with `mvn clean install -DskipTests`
 3. **Package distribution** with `mvn clean package -Pdist` in `distro/tomcat/`
 4. **Deploy** WAR or run the packaged distribution
-5. **Access** applications at http://localhost:8080/camunda/
+5. **Access** applications at http://localhost:8090/camunda/app/welcome/
 
 This approach ensures you have a complete Camunda 7 installation with all components properly integrated.
+
+---
+
+## Quick Start Commands
+
+```bash
+# Clone and build
+git clone https://github.com/camunda/camunda-bpm-platform.git
+cd camunda-bpm-platform
+mvn clean install -DskipTests
+
+# Build distribution
+cd distro/tomcat
+mvn clean package -Pdist
+
+# Extract and run
+cd target
+unzip camunda-bpm-tomcat-*.zip
+./server/apache-tomcat-*/bin/startup.sh
+```
+
+## License
+
+This project follows the Camunda 7 licensing terms. Please refer to the official Camunda documentation for license details.
