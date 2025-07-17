@@ -86,7 +86,7 @@ Once deployed, access the following URLs:
 | **Cockpit**  | http://localhost:8090/camunda/app/cockpit/ | Process monitoring and management |
 | **Tasklist** | http://localhost:8090/camunda/app/tasklist/ | Task management interface |
 | **Admin**    | http://localhost:8090/camunda/app/admin/ | User and system administration |
-| **REST API** | http://localhost:8080/engine-rest/ | RESTful API endpoint |
+| **REST API** | http://localhost:8090/engine-rest/ | RESTful API endpoint |
 
 ## Default Credentials
 
